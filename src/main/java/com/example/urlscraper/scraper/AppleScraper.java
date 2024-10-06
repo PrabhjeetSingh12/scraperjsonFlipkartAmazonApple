@@ -50,10 +50,11 @@ public class AppleScraper {
             var jsonObject = new org.json.JSONObject(jsonData);
             var offers = jsonObject.getJSONArray("offers");
             var price = offers.getJSONObject(0).getDouble("price");
-            return "₹" + price; // Format price as required
+            return String.valueOf(price); // Return raw price as a string without currency formatting
         } catch (Exception e) {
             System.err.println("Error parsing JSON: " + e.getMessage());
             return null;
         }
     }
 }
+

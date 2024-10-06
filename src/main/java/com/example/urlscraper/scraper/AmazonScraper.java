@@ -30,9 +30,10 @@ public class AmazonScraper {
         for (var element : priceElements) {
             String text = element.text().trim();
 
-            // Use regex to check for the main price format
+            // Use regex to check for the main price format and avoid outliers
             if (text.matches(".*\\d{1,3}(,\\d{3})*(\\.\\d{2})?") && !text.contains("₹5,949.00")) {
-                mainPrice = text; // Store the main price
+                // Clean price by removing ₹ symbol and commas
+                mainPrice = text.replace("₹", "").replace(",", "").trim();
                 break; // Exit after finding the main price
             }
         }
